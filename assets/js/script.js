@@ -31,6 +31,7 @@ console.log(user1.compareAge(user3));
 const btnAdd = document.getElementById('add');
 let myPet;
 const pets = [];
+const owners = [];
 
 class Pet {
   constructor(_petName, _ownerName, _species, _breed) {
@@ -50,7 +51,15 @@ btnAdd.addEventListener('click', (e) => {
 
     myPet = new Pet(petName, ownerName, species, breed);
     pets.push(myPet);
-    printPets();
+    owners.push(myPet.ownerName);
+    let owner1 = myPet.ownerName;
+    for (let i=0; i<owners.length - 1; i++) {
+       let owner2 = owners[i];
+        if (owner1 === owner2) {
+            console.log('true');
+        }
+    }
+    printPets(); 
 })
 
 const printPets = () => {
@@ -58,7 +67,7 @@ const printPets = () => {
     ul.innerHTML = '';
     pets.forEach(pet => {
         let newLi = document.createElement('li');
-        newLi.innerText = `nome: ${pet.petName}, proprietario: ${pet.ownerName}`;
+        newLi.innerText = `nome: ${pet.petName}, proprietario: ${pet.ownerName}, specie: ${pet.species}, razza: ${pet.breed}`;
         ul.appendChild(newLi);
     });
 
